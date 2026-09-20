@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kotnot-Projects</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Segoe UI',Tahoma,sans-serif;background:#0d1117;color:#e6edf3;line-height:1.6;min-height:100vh}
+.container{max-width:1200px;margin:0 auto;padding:20px}
+header{text-align:center;padding:40px 0 20px}
+.logo{font-size:2.5rem;font-weight:700;color:#58a6ff;letter-spacing:1px;margin-bottom:10px}
+.logo span{color:#3fb950}
+header h1{font-size:2.2rem;color:#f0f6fc;margin-bottom:15px}
+.tagline{color:#8b949e;max-width:700px;margin:0 auto 25px;font-size:1.1rem}
+.social-links{display:flex;justify-content:center;flex-wrap:wrap;gap:12px;margin-top:20px}
+.social-btn{display:inline-flex;align-items:center;gap:8px;padding:10px 20px;border-radius:30px;text-decoration:none;font-weight:600;transition:.3s;border:1px solid #30363d;background:#21262d;color:#e6edf3}
+.social-btn:hover{transform:translateY(-3px);box-shadow:0 6px 16px rgba(0,0,0,.4)}
+.social-btn.github:hover{background:#333;color:#fff}
+.social-btn.youtube:hover{background:#ff0000;color:#fff}
+.social-btn.telegram:hover{background:#0088cc;color:#fff}
+.social-btn.roblox:hover{background:#e2231a;color:#fff}
+.section-title{color:#f0f6fc;margin:50px 0 20px;font-size:1.8rem;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.section-subtitle{color:#8b949e;margin-bottom:25px;font-size:1rem}
+.apps-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:20px}
+.app-card{background:#161b22;border:1px solid #30363d;border-radius:14px;padding:22px;cursor:pointer;transition:.25s;display:flex;flex-direction:column;position:relative;overflow:hidden}
+.app-card:hover{transform:translateY(-5px);border-color:#58a6ff;box-shadow:0 10px 25px rgba(0,0,0,.4)}
+.app-card .icon{font-size:2.2rem;margin-bottom:12px}
+.app-card h3{color:#f0f6fc;font-size:1.25rem;margin-bottom:6px}
+.app-card p{color:#8b949e;font-size:.9rem;flex-grow:1}
+.app-card .meta{display:flex;flex-wrap:wrap;gap:6px;margin-top:14px}
+.badge{background:#21262d;border:1px solid #30363d;border-radius:20px;padding:2px 10px;font-size:.75rem;color:#8b949e}
+.app-card::after{content:'Подробнее →';position:absolute;bottom:10px;right:14px;font-size:.75rem;color:#58a6ff;opacity:0;transition:.25s}
+.app-card:hover::after{opacity:1}
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.85);display:none;align-items:center;justify-content:center;z-index:1000;padding:20px;backdrop-filter:blur(4px)}
+.modal-overlay.active{display:flex}
+.modal{background:#0d1117;border:1px solid #30363d;border-radius:16px;max-width:900px;width:100%;max-height:90vh;display:flex;flex-direction:column;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,.7)}
+.modal-header{display:flex;align-items:center;gap:14px;padding:20px 24px;border-bottom:1px solid #21262d;background:#161b22}
+.modal-header .icon{font-size:2rem}
+.modal-header h2{color:#f0f6fc;font-size:1.4rem;flex-grow:1}
+.modal-close{background:transparent;border:none;color:#8b949e;font-size:1.5rem;cursor:pointer;padding:4px 10px;border-radius:6px}
+.modal-close:hover{background:#21262d;color:#f0f6fc}
+.modal-body{padding:24px;overflow-y:auto;flex-grow:1}
+.modal-body p.desc{color:#c8cfe0;margin-bottom:20px;font-size:1.05rem}
+.info-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;margin-bottom:20px}
+.info-item{background:#161b22;border:1px solid #30363d;border-radius:10px;padding:12px}
+.info-item .label{color:#8b949e;font-size:.75rem;text-transform:uppercase;letter-spacing:.5px}
+.info-item .value{color:#f0f6fc;font-weight:600;margin-top:4px;word-break:break-word}
+.features{list-style:none;margin:20px 0}
+.features li{padding:8px 0;border-bottom:1px solid #21262d;color:#c8cfe0;display:flex;gap:10px;align-items:flex-start}
+.features li::before{content:'▸';color:#3fb950;flex-shrink:0}
+.downloads-title{color:#f0f6fc;font-size:1.1rem;margin:20px 0 10px}
+.downloads{display:flex;flex-direction:column;gap:10px;margin-top:10px}
+.launch-btn{display:inline-flex;align-items:center;gap:10px;background:linear-gradient(to right,#238636,#2ea043);color:#fff;padding:14px 24px;border-radius:10px;text-decoration:none;font-weight:700;font-size:1rem;transition:.2s;border:none;cursor:pointer;justify-content:center}
+.launch-btn:hover{filter:brightness(1.15);transform:translateY(-2px)}
+footer{text-align:center;padding:30px 0;margin-top:40px;color:#8b949e;border-top:1px solid #21262d}
+footer a{color:#58a6ff;text-decoration:none;margin:0 8px}
+footer a:hover{text-decoration:underline}
+@media(max-width:600px){
+  .logo{font-size:1.8rem}
+  header h1{font-size:1.6rem}
+  .modal-header h2{font-size:1.1rem}
+  .modal-body{padding:16px}
+}
+</style>
+</head>
+<body>
+<div class="container">
+  <header>
+    <div class="logo">Kotnot<span>-Projects</span></div>
+    <h1><i class="fas fa-laptop-code"></i> Наши приложения</h1>
+    <p class="tagline">Нажми на карточку — откроется подробная информация и ссылки для скачивания.</p>
+    <div class="social-links">
+      <a href="https://github.com/Kotnot-Projects" class="social-btn github" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+      <a href="https://www.youtube.com/@Kotnot01" class="social-btn youtube" target="_blank"><i class="fab fa-youtube"></i> YouTube</a>
+      <a href="https://t.me/KotnotLive" class="social-btn telegram" target="_blank"><i class="fab fa-telegram"></i> Telegram</a>
+      <a href="https://www.roblox.com/users/8357021075/profile" class="social-btn roblox" target="_blank"><i class="fas fa-gamepad"></i> Roblox</a>
+    </div>
+  </header>
+
+  <h2 class="section-title"><i class="fas fa-code"></i> Разработка</h2>
+  <p class="section-subtitle">Языки, IDE, SDK и ИИ-инструменты</p>
+  <div class="apps-grid" id="devGrid"></div>
+
+  <h2 class="section-title"><i class="fas fa-globe"></i> Браузеры и сеть</h2>
+  <p class="section-subtitle">Браузеры, изолированные сети, мессенджеры</p>
+  <div class="apps-grid" id="webGrid"></div>
+
+  <h2 class="section-title"><i class="fas fa-gamepad"></i> Игры</h2>
+  <p class="section-subtitle">Игры и симуляторы</p>
+  <div class="apps-grid" id="gamesGrid"></div>
+
+  <h2 class="section-title"><i class="fas fa-microchip"></i> Операционные системы</h2>
+  <p class="section-subtitle">Собственные ОС</p>
+  <div class="apps-grid" id="osGrid"></div>
+
+  <h2 class="section-title"><i class="fas fa-history"></i> Архив</h2>
+  <p class="section-subtitle">Прошлые проекты</p>
+  <div class="apps-grid" id="oldGrid"></div>
+
+  <footer>
+    <p>© 2026 Kotnot-Projects</p>
+    <div style="margin-top:12px">
+      <a href="https://github.com/Kotnot-Projects" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+      <a href="https://www.youtube.com/@Kotnot01" target="_blank"><i class="fab fa-youtube"></i> YouTube</a>
+      <a href="https://t.me/KotnotLive" target="_blank"><i class="fab fa-telegram"></i> Telegram</a>
+      <a href="https://www.roblox.com/users/8357021075/profile" target="_blank"><i class="fas fa-gamepad"></i> Roblox</a>
+    </div>
+  </footer>
+</div>
+
+<div class="modal-overlay" id="modalOverlay">
+  <div class="modal" onclick="event.stopPropagation()">
+    <div class="modal-header">
+      <span class="icon" id="modalIcon">📦</span>
+      <h2 id="modalTitle">Название</h2>
+      <button class="modal-close" onclick="closeModal()">✕</button>
+    </div>
+    <div class="modal-body" id="modalBody"></div>
+  </div>
+</div>
+
+<script>
+const APPS = {
+  /* ============ РАЗРАБОТКА ============ */
+  kotnotc: {
+    category: 'dev', icon: '⚙️',
+    title: 'Kotnot-C',
+    short: 'Язык программирования + интерпретатор + IDE + компилятор.',
+    desc: 'Kotnot-C — собственный язык программирования с XML-подобным синтаксисом для создания игр и приложений. Включает интерпретатор (лексер, парсер, AST, игровой цикл, 2D/3D графика), IDE на tkinter, компилятор для Windows и мобильную IDE для Android.',
+    platforms: ['Python', 'Windows', 'Linux', 'Android'], version: '1.0',
+    features: [
+      'Собственный язык с тегами <class>, <func>, <var>',
+      'Условия, циклы, функции, классы',
+      '2D-графика: clear, rect, circle, line, text',
+      '3D через ursina',
+      'Игровой цикл start / update',
+      'Обработка свайпов, клавиатуры, мыши',
+      'IDE с редактором кода',
+      'Компиляция .kotnot в исполняемые файлы',
+      'Мобильная IDE для Android',
+      'Встроенная справка по языку'
+    ],
+    downloads: [
+      { label: 'Kotnot-C Компилятор (Windows)', icon: 'download', link: 'https://drive.google.com/file/d/1JA6Pr2IM_-ye6QBONRlFh4EIWS4xueVa/view?usp=drive_link' },
+      { label: 'Kotnot-C Mobile IDE (Android)', icon: 'mobile-alt', link: 'https://drive.google.com/file/d/1g6fkGyjFH7rS-hwu4S-FsjgGmi64EKy3/view?usp=sharing' }
+    ]
+  },
+  nordsdk: {
+    category: 'dev', icon: '🛡️',
+    title: 'Nord-SDK',
+    short: 'Античит + капча + антивирус. Python и JavaScript.',
+    desc: 'Комплексная защита приложений: AntiCheat (детект отладчиков, читов, анализ поведения игрока), Captcha (reCAPTCHA-подобная система), Antivirus (сканер файлов, байтов, процессов). Есть версии для Python и JavaScript. Пока есть баги.',
+    platforms: ['Python', 'JavaScript', 'Web'], version: '1.0.0',
+    features: [
+      'AntiCheat: детект отладчиков и читов',
+      'BehaviorAnalyzer: speedhack, spamshot, godmode, aimbot',
+      'Captcha: math / text / image + поведенческий скоринг',
+      'Antivirus: сигнатуры, эвристика, сканирование процессов',
+      'Веб-версия: детект DevTools, Selenium, Puppeteer, headless',
+      'Защита от XSS и санитайзинг HTML'
+    ],
+    downloads: [
+      { label: 'Открыть на GitHub', icon: 'external-link-alt', link: 'https://github.com/Kotnot-Projects/nord-sdk' }
+    ]
+  },
+  kotnotai: {
+    category: 'dev', icon: '🤖',
+    title: 'KotnotAI',
+    short: 'Локальный ИИ-помощник на Ollama + RAG.',
+    desc: 'KotnotAI — локальный ИИ-помощник. Использует модель deepseek-coder через Ollama и RAG по базе знаний: конституция, учебники, история, биология, математика, кнотовский язык. Работает офлайн.',
+    platforms: ['Python', 'Ollama'], version: '2.0',
+    features: [
+      'Локальная модель deepseek-coder',
+      'RAG по базе знаний',
+      'Работает без интернета',
+      'Интеграция с KotnotNET'
+    ],
+    downloads: []
+  },
+
+  /* ============ БРАУЗЕРЫ И СЕТЬ ============ */
+  browserzet: {
+    category: 'web', icon: '🌍',
+    title: 'Browser Zet',
+    short: 'Браузер для Windows и Android. Вкладки, закладки, инкогнито.',
+    desc: 'Browser Zet — полноценный браузер для Windows на PyQt5 + QtWebEngine и его мобильная версия для Android. Вкладки, закладки с панелью, история, менеджер паролей, менеджер загрузок, режим инкогнито, группы вкладок, режим чтения, веб-инспектор, быстрые команды и настраиваемые темы.',
+    platforms: ['Windows', 'Linux', 'macOS', 'Android'], version: '3.0',
+    features: [
+      'Многовкладочный интерфейс',
+      'Панель закладок с папками',
+      'История просмотров с поиском',
+      'Менеджер паролей',
+      'Менеджер загрузок',
+      'Режим инкогнито',
+      'Группы вкладок',
+      'Режим чтения',
+      'Веб-инспектор (HTML / JS)',
+      'Тёмная и светлая темы',
+      'Мобильная версия для Android'
+    ],
+    downloads: [
+      { label: 'Browser Zet (Windows)', icon: 'download', link: 'https://drive.google.com/file/d/1iPPWinwG23-p_uoXeFlPoG-t6PQxJ769/view?usp=drive_link' },
+      { label: 'Browser Zet Mobile (Android)', icon: 'mobile-alt', link: 'https://drive.google.com/file/d/1nLbqNdwmDibHv9Sly7hghTznHcKKvGEr/view?usp=sharing' }
+    ]
+  },
+  kotnotnet: {
+    category: 'web', icon: '🕸️',
+    title: 'KotnotNET',
+    short: 'Изолированная сеть .kotnot с 28 сайтами, играми, ИИ и чатом.',
+    desc: 'KotnotNET v6.0 — изолированная сеть Кнотовской Элиты. 28 сайтов, интерактивная карта, конституция, викторина, билеты, игры, ИИ-помощник, мультиплеер-чат, живая экономика, профили.',
+    platforms: ['Python', 'Windows', 'Linux'], version: '6.0',
+    features: [
+      '28 сайтов внутри сети .kotnot',
+      'Карта Кога-Кнотии с 28 районами',
+      'Конституция с поиском',
+      'Викторина (8 вопросов)',
+      'Продажа билетов',
+      'Игры: шутер, танки, паркур, песочница, змейка',
+      'ИИ ai.kotnot + RAG',
+      'Мультиплеер-чат (WebSocket)',
+      'Живая экономика',
+      'Профили пользователей'
+    ],
+    downloads: [
+      { label: 'Скачать KotnotNET', icon: 'download', link: 'https://drive.google.com/file/d/1ww2VCr7C-ofQGlzbS4_n24TDnHS-qUv4/view?usp=drive_link' }
+    ]
+  },
+  gitrexmsg: {
+    category: 'web', icon: '💬',
+    title: 'Gitrex Message',
+    short: 'Мессенджер с друзьями, группами и админ-панелью.',
+    desc: 'Мессенджер на tkinter + Firebase. Регистрация, вход, авто-вход по сохранённым сессиям, друзья, заявки, группы, роли (user / moderator / staff), админ-панель, блокировки, темы, RU/EN.',
+    platforms: ['Python', 'Windows', 'Linux'], version: '1.0',
+    features: [
+      'Регистрация и вход',
+      'Авто-вход по сохранённым аккаунтам',
+      'Друзья и заявки в друзья',
+      'Группы с админами и банами',
+      'Роли: user / moderator / staff',
+      'Админ-панель: баны, смена ролей',
+      'Блокировка пользователей',
+      'Тёмная / светлая тема',
+      'Русский / английский язык'
+    ],
+    downloads: [
+      { label: 'Скачать Gitrex Message (Windows)', icon: 'download', link: 'https://drive.google.com/file/d/1EaW8n8dH3xkk1zzviVmy7sGYgANAn9df/view?usp=drive_link' }
+    ]
+  },
+
+  /* ============ ИГРЫ ============ */
+  globalsim: {
+    category: 'games', icon: '🌍',
+    title: 'GlobalSimulator',
+    short: 'Симулятор управления страной: 22 страны, идеологии, войны.',
+    desc: 'Глобальный симулятор на tkinter. 22 страны, 10 идеологий, войны и захваты, выборы, реформы, протесты, экономика, дипломатия, сохранения.',
+    platforms: ['Python', 'Windows'], version: '1.0',
+    features: [
+      '22 страны с уникальными данными',
+      '10 идеологий',
+      'Объявление войн и захват стран',
+      'Выборы и смена идеологий',
+      'Реформы: экономика, коррупция, соцсфера',
+      'Протесты и требования',
+      'Дипломатия: отношения, торговля, санкции',
+      'Сохранение и загрузка игры'
+    ],
+    downloads: [
+      { label: 'Скачать GlobalSimulator', icon: 'download', link: 'https://drive.google.com/file/d/1iuDqhK7sgHvbQXVoY_MXUG1btSzIrmaI/view?usp=drive_link' }
+    ]
+  },
+  kotnotsandbox: {
+    category: 'games', icon: '🐱',
+    title: 'Kotnot_Sandbox',
+    short: 'Браузерная песочница: карты, комнаты, боты, редактор .kmap.',
+    desc: 'Браузерная игра-песочница. Выбор никнейма, комнаты, режимы, редактор карт 20×20 (.kmap), магазин скинов, настройки, аккаунты, режим исследования, день/ночь, счёт очков, инвентарь.',
+    platforms: ['Web', 'HTML', 'JavaScript'], version: '1.0',
+    features: [
+      'Ввод никнейма',
+      'Комнаты: создание и подключение',
+      'Режимы игры',
+      'Редактор карт 20×20 (.kmap)',
+      'Магазин скинов',
+      'Настройки: инверсия Y, звук, боты, скорость',
+      'Вход и регистрация',
+      'Режим исследования',
+      'День / ночь',
+      'Инвентарь: трава, алмаз, золото',
+      'Управление: движение и поворот'
+    ],
+    downloads: [
+      { label: 'Открыть Kotnot_Sandbox', icon: 'external-link-alt', link: 'https://kotnot-projects.github.io/Kotnot_Sandbox/' }
+    ]
+  },
+  robloxgames: {
+    category: 'games', icon: '🎮',
+    title: 'Игры на Roblox',
+    short: 'Игры, созданные в Roblox Studio.',
+    desc: 'Игры, сделанные в Roblox Studio. Основной профиль — Kotnot_Demilxian. Первый проект: NovoPrussia.',
+    platforms: ['Roblox'], version: '—',
+    features: [
+      'Профиль Roblox: Kotnot_Demilxian',
+      'Игра NovoPrussia',
+      'Список будет пополняться'
+    ],
+    downloads: [
+      { label: 'Открыть профиль Roblox', icon: 'external-link-alt', link: 'https://www.roblox.com/users/8357021075/profile' }
+    ]
+  },
+
+  /* ============ ОС ============ */
+  gitrexos: {
+    category: 'os', icon: '🖥️',
+    title: 'GitrexOS',
+    short: 'Собственная операционная система.',
+    desc: 'GitrexOS — операционная система Kotnot-Projects. Изначально была ОС в PowerPoint 2023-2025, под конец 2025 стала реальной программой. Начиная с 11 версии — реальные ОС. Рабочий стол, окна, меню «Пуск», иконки приложений, часы.',
+    platforms: ['Python', 'Windows', 'Linux'], version: '11',
+    features: [
+      'Рабочий стол с градиентом',
+      'Оконный менеджер',
+      'Меню «Пуск»',
+      'Иконки приложений',
+      'Часы и дата',
+      'Панель задач',
+      'Управление мышью и клавиатурой'
+    ],
+    downloads: [
+      { label: 'Открыть на GitHub', icon: 'external-link-alt', link: 'https://github.com/Kotnot-Projects/GitrexOS' }
+    ]
+  },
+
+  /* ============ АРХИВ ============ */
+  oldsite: {
+    category: 'old', icon: '📜',
+    title: 'Старый сайт',
+    short: 'Первая версия витрины приложений.',
+    desc: 'Первая версия сайта проекта — витрина приложений с документацией и ссылками на соцсети. Сохранён как история развития проекта.',
+    platforms: ['HTML', 'CSS', 'JavaScript'], version: '1.0',
+    features: [
+      'Карточки приложений',
+      'Документация по продуктам',
+      'Ссылки на соцсети'
+    ],
+    downloads: []
+  }
+};
+
+const GRIDS = {
+  dev: document.getElementById('devGrid'),
+  web: document.getElementById('webGrid'),
+  games: document.getElementById('gamesGrid'),
+  os: document.getElementById('osGrid'),
+  old: document.getElementById('oldGrid')
+};
+
+function renderCards(){
+  Object.entries(APPS).forEach(([id, app]) => {
+    const grid = GRIDS[app.category];
+    if(!grid) return;
+    const card = document.createElement('div');
+    card.className = 'app-card';
+    card.onclick = () => openModal(id);
+    card.innerHTML = `
+      <div class="icon">${app.icon}</div>
+      <h3>${app.title}</h3>
+      <p>${app.short}</p>
+      <div class="meta">
+        ${app.platforms.map(p => `<span class="badge">${p}</span>`).join('')}
+      </div>
+    `;
+    grid.appendChild(card);
+  });
+}
+
+const overlay = document.getElementById('modalOverlay');
+const modalIcon = document.getElementById('modalIcon');
+const modalTitle = document.getElementById('modalTitle');
+const modalBody = document.getElementById('modalBody');
+
+function openModal(id){
+  const app = APPS[id];
+  if(!app) return;
+  modalIcon.textContent = app.icon;
+  modalTitle.textContent = app.title;
+
+  let html = `<p class="desc">${app.desc}</p>`;
+
+  html += `<div class="info-grid">
+    <div class="info-item"><div class="label">Версия</div><div class="value">${app.version}</div></div>
+    <div class="info-item"><div class="label">Платформы</div><div class="value">${app.platforms.join(', ')}</div></div>
+  </div>`;
+
+  if(app.features && app.features.length){
+    html += `<h3 style="color:#f0f6fc;margin-bottom:8px">Возможности</h3><ul class="features">`;
+    app.features.forEach(f => html += `<li>${f}</li>`);
+    html += `</ul>`;
+  }
+
+  if(app.downloads && app.downloads.length){
+    html += `<h3 class="downloads-title"><i class="fas fa-download"></i> Скачать / Открыть</h3>`;
+    html += `<div class="downloads">`;
+    app.downloads.forEach(d => {
+      html += `<a class="launch-btn" href="${d.link}" target="_blank" rel="noopener">
+        <i class="fas fa-${d.icon}"></i> ${d.label}
+      </a>`;
+    });
+    html += `</div>`;
+  } else {
+    html += `<p style="color:#8b949e;margin-top:16px"><i class="fas fa-info-circle"></i> Ссылки для скачивания появятся позже.</p>`;
+  }
+
+  modalBody.innerHTML = html;
+  overlay.classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeModal(){
+  overlay.classList.remove('active');
+  document.body.style.overflow = '';
+}
+
+overlay.addEventListener('click', e => { if(e.target === overlay) closeModal(); });
+document.addEventListener('keydown', e => { if(e.key === 'Escape') closeModal(); });
+
+renderCards();
+</script>
+</body>
+</html>
