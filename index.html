@@ -21,7 +21,6 @@ header h1{font-size:2.2rem;color:#f0f6fc;margin-bottom:15px}
 .social-btn.youtube:hover{background:#ff0000;color:#fff}
 .social-btn.telegram:hover{background:#0088cc;color:#fff}
 .social-btn.roblox:hover{background:#e2231a;color:#fff}
-.social-btn.email:hover{background:#ea4335;color:#fff}
 .section-title{color:#f0f6fc;margin:50px 0 20px;font-size:1.8rem;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
 .section-subtitle{color:#8b949e;margin-bottom:25px;font-size:1rem}
 .apps-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:20px}
@@ -58,8 +57,6 @@ header h1{font-size:2.2rem;color:#f0f6fc;margin-bottom:15px}
 footer{text-align:center;padding:30px 0;margin-top:40px;color:#8b949e;border-top:1px solid #21262d}
 footer a{color:#58a6ff;text-decoration:none;margin:0 8px}
 footer a:hover{text-decoration:underline}
-footer .email-footer{color:#ea4335;margin:0 8px;text-decoration:none}
-footer .email-footer:hover{text-decoration:underline}
 @media(max-width:600px){
   .logo{font-size:1.8rem}
   header h1{font-size:1.6rem}
@@ -79,7 +76,6 @@ footer .email-footer:hover{text-decoration:underline}
       <a href="https://www.youtube.com/@Kotnot01" class="social-btn youtube" target="_blank"><i class="fab fa-youtube"></i> YouTube</a>
       <a href="https://t.me/KotnotLive" class="social-btn telegram" target="_blank"><i class="fab fa-telegram"></i> Telegram</a>
       <a href="https://www.roblox.com/users/8357021075/profile" class="social-btn roblox" target="_blank"><i class="fas fa-gamepad"></i> Roblox</a>
-      <a href="mailto:kotnotdemilxian@gmail.com" class="social-btn email"><i class="fas fa-envelope"></i> Email</a>
     </div>
   </header>
 
@@ -110,7 +106,6 @@ footer .email-footer:hover{text-decoration:underline}
       <a href="https://www.youtube.com/@Kotnot01" target="_blank"><i class="fab fa-youtube"></i> YouTube</a>
       <a href="https://t.me/KotnotLive" target="_blank"><i class="fab fa-telegram"></i> Telegram</a>
       <a href="https://www.roblox.com/users/8357021075/profile" target="_blank"><i class="fas fa-gamepad"></i> Roblox</a>
-      <a href="mailto:kotnotdemilxian@gmail.com" class="email-footer"><i class="fas fa-envelope"></i> kotnotdemilxian@gmail.com</a>
     </div>
   </footer>
 </div>
@@ -134,7 +129,7 @@ const APPS = {
     title: 'Kotnot-C',
     short: 'Язык программирования + интерпретатор + IDE + компилятор.',
     desc: 'Kotnot-C — собственный язык программирования с XML-подобным синтаксисом для создания игр и приложений. Включает интерпретатор (лексер, парсер, AST, игровой цикл, 2D/3D графика), IDE на tkinter, компилятор для Windows и мобильную IDE для Android.',
-    platforms: ['Python', 'Windows', 'Linux', 'Android'], version: '8.0',
+    platforms: ['Python', 'Windows', 'Linux', 'Android'], version: '1.0',
     features: [
       'Собственный язык с тегами <class>, <func>, <var>',
       'Условия, циклы, функции, классы',
@@ -205,6 +200,14 @@ const APPS = {
       'Тёмная и светлая темы',
       'Мобильная версия для Android'
     ],
+    requirements: [
+      'Операционная система: Windows Vista или новее (для 64-битной системы — Windows 10/11). Qt WebEngine не поддерживает Windows XP и WinRT.',
+      'Процессор: 64-битный (x64), с поддержкой инструкции SSE3 (как Intel Pentium 4 или новее). Сборка Browser Zet настроена под x64compatible.',
+      'Оперативная память (RAM): минимум 4 ГБ, рекомендовано 8 ГБ. Chromium, лежащий в основе движка, довольно требователен к памяти.',
+      'Место на диске: около 300–500 МБ для установленной программы (включая Chromium и Qt). Ещё потребуется место для кэша и данных профилей (user1.db, storage и т.д.).',
+      'Видеокарта: DirectX 9 или новее с драйвером WDDM 1.0.',
+      'Дополнительно: должен быть установлен Visual C++ Redistributable 14.28 или новее (обычно уже есть в системе или ставится вместе с другими программами).'
+    ],
     downloads: [
       { label: 'Browser Zet (Windows)', icon: 'download', link: 'https://drive.google.com/file/d/1iPPWinwG23-p_uoXeFlPoG-t6PQxJ769/view?usp=drive_link' },
       { label: 'Browser Zet Mobile (Android)', icon: 'mobile-alt', link: 'https://drive.google.com/file/d/1nLbqNdwmDibHv9Sly7hghTznHcKKvGEr/view?usp=sharing' }
@@ -237,7 +240,7 @@ const APPS = {
     title: 'Gitrex Message',
     short: 'Мессенджер с друзьями, группами и админ-панелью.',
     desc: 'Мессенджер на tkinter + Firebase. Регистрация, вход, авто-вход по сохранённым сессиям, друзья, заявки, группы, роли (user / moderator / staff), админ-панель, блокировки, темы, RU/EN.',
-    platforms: ['Python', 'Windows', 'Linux'], version: '1.5',
+    platforms: ['Python', 'Windows', 'Linux'], version: '1.0',
     features: [
       'Регистрация и вход',
       'Авто-вход по сохранённым аккаунтам',
@@ -280,7 +283,7 @@ const APPS = {
     title: 'Kotnot_Sandbox',
     short: 'Браузерная песочница: карты, комнаты, боты, редактор .kmap.',
     desc: 'Браузерная игра-песочница. Выбор никнейма, комнаты, режимы, редактор карт 20×20 (.kmap), магазин скинов, настройки, аккаунты, режим исследования, день/ночь, счёт очков, инвентарь.',
-    platforms: ['Web', 'HTML', 'JavaScript'], version: '0.4 Beta',
+    platforms: ['Web', 'HTML', 'JavaScript'], version: '1.0',
     features: [
       'Ввод никнейма',
       'Комнаты: создание и подключение',
@@ -339,17 +342,15 @@ const APPS = {
   oldsite: {
     category: 'old', icon: '📜',
     title: 'Старый сайт',
-    short: 'Первая версия витрины приложений (Perfectic Inc).',
-    desc: 'Первая версия сайта проекта — витрина приложений с документацией и ссылками на соцсети. Ранее назывался Perfectic Inc. Сохранён как история развития проекта.',
-    platforms: ['HTML', 'CSS', 'JavaScript'], version: '-',
+    short: 'Первая версия витрины приложений.',
+    desc: 'Первая версия сайта проекта — витрина приложений с документацией и ссылками на соцсети. Сохранён как история развития проекта.',
+    platforms: ['HTML', 'CSS', 'JavaScript'], version: '1.0',
     features: [
       'Карточки приложений',
       'Документация по продуктам',
       'Ссылки на соцсети'
     ],
-    downloads: [
-      { label: 'Открыть старый сайт', icon: 'external-link-alt', link: 'https://kotnot.github.io/Perfectic-inc-site/' }
-    ]
+    downloads: []
   }
 };
 
@@ -401,6 +402,12 @@ function openModal(id){
   if(app.features && app.features.length){
     html += `<h3 style="color:#f0f6fc;margin-bottom:8px">Возможности</h3><ul class="features">`;
     app.features.forEach(f => html += `<li>${f}</li>`);
+    html += `</ul>`;
+  }
+
+  if(app.requirements && app.requirements.length){
+    html += `<h3 style="color:#f0f6fc;margin:20px 0 8px"><i class="fas fa-microchip"></i> Системные требования</h3><ul class="features">`;
+    app.requirements.forEach(r => html += `<li>${r}</li>`);
     html += `</ul>`;
   }
 
