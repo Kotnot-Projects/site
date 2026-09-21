@@ -129,7 +129,7 @@ const APPS = {
     title: 'Kotnot-C',
     short: 'Язык программирования + интерпретатор + IDE + компилятор.',
     desc: 'Kotnot-C — собственный язык программирования с XML-подобным синтаксисом для создания игр и приложений. Включает интерпретатор (лексер, парсер, AST, игровой цикл, 2D/3D графика), IDE на tkinter, компилятор для Windows и мобильную IDE для Android.',
-    platforms: ['Python', 'Windows', 'Linux', 'Android'], version: '1.0',
+    platforms: ['Windows', 'Android'], version: '1.0',
     features: [
       'Собственный язык с тегами <class>, <func>, <var>',
       'Условия, циклы, функции, классы',
@@ -150,9 +150,9 @@ const APPS = {
   nordsdk: {
     category: 'dev', icon: '🛡️',
     title: 'Nord-SDK',
-    short: 'Античит + капча + антивирус. Python и JavaScript.',
-    desc: 'Комплексная защита приложений: AntiCheat (детект отладчиков, читов, анализ поведения игрока), Captcha (reCAPTCHA-подобная система), Antivirus (сканер файлов, байтов, процессов). Есть версии для Python и JavaScript. Пока есть баги.',
-    platforms: ['Python', 'JavaScript', 'Web'], version: '1.0.0',
+    short: 'Античит + капча + антивирус.',
+    desc: 'Комплексная защита приложений: AntiCheat (детект отладчиков, читов, анализ поведения игрока), Captcha (reCAPTCHA-подобная система), Antivirus (сканер файлов, байтов, процессов). Пока есть баги.',
+    platforms: ['Windows', 'Web'], version: '1.0.0',
     features: [
       'AntiCheat: детект отладчиков и читов',
       'BehaviorAnalyzer: speedhack, spamshot, godmode, aimbot',
@@ -170,7 +170,7 @@ const APPS = {
     title: 'KotnotAI',
     short: 'Локальный ИИ-помощник на Ollama + RAG.',
     desc: 'KotnotAI — локальный ИИ-помощник. Использует модель deepseek-coder через Ollama и RAG по базе знаний: конституция, учебники, история, биология, математика, кнотовский язык. Работает офлайн.',
-    platforms: ['Python', 'Ollama'], version: '2.0',
+    platforms: ['Windows', 'Ollama'], version: '2.0',
     features: [
       'Локальная модель deepseek-coder',
       'RAG по базе знаний',
@@ -186,7 +186,7 @@ const APPS = {
     title: 'Browser Zet',
     short: 'Браузер для Windows и Android. Вкладки, закладки, инкогнито.',
     desc: 'Browser Zet — полноценный браузер для Windows на PyQt5 + QtWebEngine и его мобильная версия для Android. Вкладки, закладки с панелью, история, менеджер паролей, менеджер загрузок, режим инкогнито, группы вкладок, режим чтения, веб-инспектор, быстрые команды и настраиваемые темы.',
-    platforms: ['Windows', 'Linux', 'macOS', 'Android'], version: '3.0',
+    platforms: ['Windows', 'Android'], version: '3.0',
     features: [
       'Многовкладочный интерфейс',
       'Панель закладок с папками',
@@ -218,7 +218,7 @@ const APPS = {
     title: 'KotnotNET',
     short: 'Изолированная сеть .kotnot с 28 сайтами, играми, ИИ и чатом.',
     desc: 'KotnotNET v6.0 — изолированная сеть Кнотовской Элиты. 28 сайтов, интерактивная карта, конституция, викторина, билеты, игры, ИИ-помощник, мультиплеер-чат, живая экономика, профили.',
-    platforms: ['Python', 'Windows', 'Linux'], version: '6.0',
+    platforms: ['Windows'], version: '6.0',
     features: [
       '28 сайтов внутри сети .kotnot',
       'Карта Кога-Кнотии с 28 районами',
@@ -240,7 +240,7 @@ const APPS = {
     title: 'Gitrex Message',
     short: 'Мессенджер с друзьями, группами и админ-панелью.',
     desc: 'Мессенджер на tkinter + Firebase. Регистрация, вход, авто-вход по сохранённым сессиям, друзья, заявки, группы, роли (user / moderator / staff), админ-панель, блокировки, темы, RU/EN.',
-    platforms: ['Python', 'Windows', 'Linux'], version: '1.0',
+    platforms: ['Windows'], version: '1.0',
     features: [
       'Регистрация и вход',
       'Авто-вход по сохранённым аккаунтам',
@@ -263,7 +263,7 @@ const APPS = {
     title: 'GlobalSimulator',
     short: 'Симулятор управления страной: 22 страны, идеологии, войны.',
     desc: 'Глобальный симулятор на tkinter. 22 страны, 10 идеологий, войны и захваты, выборы, реформы, протесты, экономика, дипломатия, сохранения.',
-    platforms: ['Python', 'Windows'], version: '1.0',
+    platforms: ['Windows'], version: '1.0',
     features: [
       '22 страны с уникальными данными',
       '10 идеологий',
@@ -274,6 +274,13 @@ const APPS = {
       'Дипломатия: отношения, торговля, санкции',
       'Сохранение и загрузка игры'
     ],
+    requirements: [
+      'ОС: Windows 7 SP1 или новее',
+      'Процессор: 1.5 ГГц',
+      'ОЗУ: 1 ГБ',
+      'Диск: 200 МБ',
+      'Разрешение экрана: 1024×768'
+    ],
     downloads: [
       { label: 'Скачать GlobalSimulator', icon: 'download', link: 'https://drive.google.com/file/d/1iuDqhK7sgHvbQXVoY_MXUG1btSzIrmaI/view?usp=drive_link' }
     ]
@@ -283,7 +290,7 @@ const APPS = {
     title: 'Kotnot_Sandbox',
     short: 'Браузерная песочница: карты, комнаты, боты, редактор .kmap.',
     desc: 'Браузерная игра-песочница. Выбор никнейма, комнаты, режимы, редактор карт 20×20 (.kmap), магазин скинов, настройки, аккаунты, режим исследования, день/ночь, счёт очков, инвентарь.',
-    platforms: ['Web', 'HTML', 'JavaScript'], version: '1.0',
+    platforms: ['Web'], version: '1.0',
     features: [
       'Ввод никнейма',
       'Комнаты: создание и подключение',
@@ -323,7 +330,7 @@ const APPS = {
     title: 'GitrexOS',
     short: 'Собственная операционная система.',
     desc: 'GitrexOS — операционная система Kotnot-Projects. Изначально была ОС в PowerPoint 2023-2025, под конец 2025 стала реальной программой. Начиная с 11 версии — реальные ОС. Рабочий стол, окна, меню «Пуск», иконки приложений, часы.',
-    platforms: ['Python', 'Windows', 'Linux'], version: '11',
+    platforms: ['GitrexOS'], version: '11',
     features: [
       'Рабочий стол с градиентом',
       'Оконный менеджер',
@@ -344,7 +351,7 @@ const APPS = {
     title: 'Старый сайт',
     short: 'Первая версия витрины приложений.',
     desc: 'Первая версия сайта проекта — витрина приложений с документацией и ссылками на соцсети. Сохранён как история развития проекта.',
-    platforms: ['HTML', 'CSS', 'JavaScript'], version: '1.0',
+    platforms: ['Web'], version: '1.0',
     features: [
       'Карточки приложений',
       'Документация по продуктам',
