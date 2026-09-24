@@ -54,6 +54,10 @@ header h1{font-size:2.2rem;color:#f0f6fc;margin-bottom:15px}
 .downloads{display:flex;flex-direction:column;gap:10px;margin-top:10px}
 .launch-btn{display:inline-flex;align-items:center;gap:10px;background:linear-gradient(to right,#238636,#2ea043);color:#fff;padding:14px 24px;border-radius:10px;text-decoration:none;font-weight:700;font-size:1rem;transition:.2s;border:none;cursor:pointer;justify-content:center}
 .launch-btn:hover{filter:brightness(1.15);transform:translateY(-2px)}
+.guide-note{background:#161b22;border:1px solid #30363d;border-left:3px solid #58a6ff;border-radius:8px;padding:12px 16px;margin:16px 0;color:#c8cfe0;font-size:.9rem}
+.guide-note i{color:#58a6ff;margin-right:8px}
+.video-wrapper{margin:24px 0;border-radius:12px;overflow:hidden;border:1px solid #30363d;background:#000}
+.video-wrapper iframe{display:block;width:100%;height:auto;aspect-ratio:16/9;border:0}
 footer{text-align:center;padding:30px 0;margin-top:40px;color:#8b949e;border-top:1px solid #21262d}
 footer a{color:#58a6ff;text-decoration:none;margin:0 8px}
 footer a:hover{text-decoration:underline}
@@ -169,15 +173,31 @@ const APPS = {
     category: 'dev', icon: '🤖',
     title: 'KotnotAI',
     short: 'Локальный ИИ-помощник на Ollama + RAG.',
-    desc: 'KotnotAI — локальный ИИ-помощник. Использует модель deepseek-coder через Ollama и RAG по базе знаний: конституция, учебники, история, биология, математика, кнотовский язык. Работает офлайн.',
-    platforms: ['Windows', 'Ollama'], version: '2.0',
+    desc: 'KotnotAI — локальный ИИ-помощник. Работает через Ollama с моделями Llama 3.1, DeepSeek Coder, Mistral, LLaVA и другими. Поддерживает текст, код, описание изображений, работу с файлами и RAG по базе знаний. Всё работает офлайн, без отправки данных в облако.',
+    platforms: ['Windows', 'Ollama'], version: '0.1.0',
     features: [
-      'Локальная модель deepseek-coder',
-      'RAG по базе знаний',
-      'Работает без интернета',
-      'Интеграция с KotnotNET'
+      'Локальные модели через Ollama (Llama 3.1, DeepSeek Coder, Mistral, LLaVA)',
+      'Чат с историей и потоковой генерацией ответов',
+      'Подсветка и копирование блоков кода',
+      'Прикрепление текстовых файлов (.py, .txt, .md, .json и др.)',
+      'Описание изображений через LLaVA',
+      'Настройка temperature, top_p, max_tokens, длины истории',
+      'Редактирование системного промпта',
+      'Автоопределение установленных моделей Ollama',
+      'Работает полностью офлайн'
     ],
-    downloads: []
+    requirements: [
+      'Операционная система: Windows 10 (22H2) или новее, либо Windows 11.',
+      'Процессор: 64-битный (x64) с поддержкой SSE3.',
+      'Оперативная память (RAM): минимум 8 ГБ для моделей 7B (Llama 3.1 8B, Mistral 7B). Рекомендуется 16 ГБ для моделей 13B (LLaVA 13B). Для Llama 3.1 70B нужно 32 ГБ и больше.',
+      'Место на диске: около 4 ГБ для установки Ollama, плюс 50+ ГБ под скачанные модели.',
+      'Видеокарта: необязательна — можно работать на CPU, но с NVIDIA (драйвер 551.61+) или AMD Radeon генерация идёт в разы быстрее.',
+      'Дополнительно: требуется установленная Ollama (https://ollama.com/download) — гайд по установке есть на этом сайте.'
+    ],
+    guide: 'Требуется Ollama — подробный гайд по установке смотрите ниже.',
+    downloads: [
+      { label: 'Скачать KotnotAI (Windows)', icon: 'download', link: 'https://drive.google.com/file/d/1BZLbXMeZcjzyJgtotgOXKL0bzBCCh_lB/view?usp=sharing' }
+    ]
   },
 
   /* ============ БРАУЗЕРЫ И СЕТЬ ============ */
@@ -405,6 +425,19 @@ function openModal(id){
     <div class="info-item"><div class="label">Версия</div><div class="value">${app.version}</div></div>
     <div class="info-item"><div class="label">Платформы</div><div class="value">${app.platforms.join(', ')}</div></div>
   </div>`;
+
+  if(app.guide){
+    html += `<div class="guide-note"><i class="fas fa-book-open"></i>${app.guide}</div>`;
+  }
+
+  // Встраиваем видео-гайд для KotnotAI (Ollama) прямо в модальное окно
+  if(id === 'kotnotai'){
+    html += `
+      <div class="video-wrapper">
+        <iframe width="1059" height="595" src="https://www.youtube.com/embed/zfQOyX7moVQ" title="ГАЙД КАК УСТАНОВИТЬ OLLAMA НА НОУТ/ПК ДЛЯ РАБОТЫ С KOTNOTAI!" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+      </div>
+    `;
+  }
 
   if(app.features && app.features.length){
     html += `<h3 style="color:#f0f6fc;margin-bottom:8px">Возможности</h3><ul class="features">`;
