@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Kotnot-Projects</title>
+<link rel="icon" type="image/png" href="index.png">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
@@ -294,6 +295,42 @@ const APPS = {
   },
 
   /* ============ ИГРЫ ============ */
+  matrixonline: {
+    category: 'games', icon: '🟢',
+    title: 'Matrix Online',
+    short: 'Онлайн-игра в стиле Матрицы: калькулятор + Дурак, чат, лобби, Firebase.',
+    desc: 'Matrix Online — многопользовательская онлайн-игра в стиле Матрицы, объединяющая калькулятор и карточную игру «Дурак». Игроки создают лобби, общаются в чате с реакциями, редактированием и ответами, решают математические примеры (результаты летят в чат) и сражаются в «Дурака» на 2–4 игрока. Всё синхронизируется через Firebase Realtime Database в реальном времени. Есть кастомные аватары, темы оформления, цвет ника, роли админов и логи событий.',
+    platforms: ['Windows'], version: '1.0',
+    features: [
+      'Онлайн-лобби на 2–4 игрока (Firebase Realtime DB)',
+      'Чат с реакциями (👍❤️😂😮😢🔥)',
+      'Ответы на сообщения, редактирование и удаление',
+      'Индикатор «печатает…»',
+      'Система профилей: аватар, цвет ника, био',
+      '4 темы оформления: dark, light, forest, space',
+      'Безопасный калькулятор на AST (sin/cos/tan/log/ln/√/π/!/%)',
+      'Кнопка «Отправить результат» — результат уходит в чат лобби',
+      'Карточная игра «Дурак» на 2–4 игрока',
+      'Козырь, атака/защита, «Бито», «Взять», раздача до 6 карт',
+      'Роли админов: повышение/понижение прямо из лобби',
+      'Логи событий лобби с временными метками',
+      'Heartbeat и очистка офлайн-игроков',
+      'Синхронизация состояния каждые 2 секунды'
+    ],
+    requirements: [
+      'Операционная система: Windows 10 / 11 (также работает на Linux и macOS при наличии Python 3.9+).',
+      'Python: 3.9 или новее.',
+      'Библиотеки: tkinter (встроен), Pillow, pyrebase4.',
+      'Интернет: обязателен — игра синхронизируется через Firebase Realtime Database.',
+      'Firebase: используется публичная база проекта (apiKey / databaseURL уже вшиты).',
+      'Оперативная память: минимум 2 ГБ.',
+      'Место на диске: около 50 МБ + папки avatars/ и stickers/ с картинками.'
+    ],
+    guide: 'Для запуска: установи Python 3.9+, затем выполни в терминале: pip install pillow pyrebase4. Скачай архив, распакуй, положи рядом папки avatars/ и stickers/ (если есть) и запусти main.py. При первом запуске подключение к Firebase проверяется автоматически — в консоли появится "Firebase OK".',
+    downloads: [
+      { label: 'Скачать Matrix Online (Windows)', icon: 'download', link: 'https://drive.google.com/file/d/1ljXR4V6gYQIODYtrl2s2lbU8hvujrZXU/view?usp=sharing' }
+    ]
+  },
   postatomic: {
     category: 'games', icon: '☢️',
     title: 'Post-Atomic Country I',
